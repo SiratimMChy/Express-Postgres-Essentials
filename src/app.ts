@@ -6,10 +6,15 @@ import express, {
 import { userRouter } from "./modules/users/user.route";
 import { profileRoute } from "./modules/profiles/profile.route";
 import { authRoute } from "./modules/auth/auth.route";
+import fs from "fs"
+import logger from "./middleware/logger";
 const app: Application = express();
 
 app.use(express.json());
+app.use(express.text());
 app.use(express.urlencoded({ extended: true }));
+app.use(logger);
+
 
 app.use("/api/v1/users",userRouter);
 
